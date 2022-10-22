@@ -26,6 +26,18 @@ app.post('/books', (req, res) => {
     saveBook(books)
     res.status(201).json(req.body)
 })
+app.put('/books/:id', (req, res) => {
+
+    const updateIndex = books.findIndex(x => x.id == req.params.id)
+    
+    Object.assign(books[updateIndex], req.body)
+    
+    saveBook(books)
+    
+    res.status(200).json(req.body)
+    
+    }) 
+
 app.delete('/books/:id', (req, res) => {
 
     const deletedIndex = books.findIndex(book => book.id === req.params.id)
